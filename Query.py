@@ -27,10 +27,7 @@ def getCollection(collName):
         raise Exception('Unknown database collection ' + collName)
     return posts
 
-db= __connect__()
-print db.collection_names()
-pres = getCollection('prescriptons')
-print pres.find_one()
+
 
 #print db.collection_names()
 def getAllAD():
@@ -40,12 +37,18 @@ def getAllAD():
 	return res
 
 def sumAmounts():
+	## Function to aggregate 
 	p = getCollection('prescriptons')
 	regx = re.compile("^0403030", re.IGNORECASE)
-	print p.aggregate( [{ '$match': {'BNF CODE':regx}  } , {'$group': { '_id' : "$PRACTICE" },'$total': {'$sum': "$ACT COST"} }])
+	print p.aggregate( [{ '$match': {'BNF CODE':regx}  } , {'$group': { '_id' : "$PRACTICE" ,'total': {'$sum': "$ACT COST"} }}])
 
 
 
 getAllAD()
 sumAmounts()
+
+db= __connect__()
+print db.collection_names()
+pres = getCollection('prescriptons')
+print pres.find_one()
 
