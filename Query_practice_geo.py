@@ -77,11 +77,11 @@ def testPrac(dic):
 
 def main():
     cl  = getCollection('practices',write=False)
-    print '{ "type": "FeatureCollection"','\n'; 
+    print '{ "type": "FeatureCollection,"','\n'; 
     print '"features": [','\n'
     for p in cl.find({ 'loc' : { '$exists' : True} }) :
         print '{ "type": "Feature",'
-        print '"geometry":',p['loc'],'\n'; 
+        print '"geometry": "type": "Point", "coordinates": [',p['loc']['coordinates'][0],',',p['loc']['coordinates'][1],']\n'; 
         print '}',"\n"
     print "]\n"
     print "}"
