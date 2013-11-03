@@ -52,17 +52,19 @@ def sumAmounts():
 	return p.aggregate( [{ '$match': {'BNF CODE':regx}  } , 
 		{'$group': { '_id' : "$PRACTICE" ,'totalCost': {'$sum': "$ACT COST"} }}])	
 
-def pushMetrics(id):
-	## Function to take a list of dictonaries with id:practice and 
-	# metricName and push to practice db
-	db = getCollection('practices')
-	print db.find({'_id':id})
+# def pushMetrics(id):
+
+# 	db = getCollection('practices')
+# 	print db.find({'_id':id})
 
 def pushToPrac(dic):
+        ## Function to take a list of dictonaries with id:practice and 
+    # metricName and push to practice db
     db = getCollection('practices',write=True)
     for pracID,pracDic in dic.iteritems():
+        print pracID
         for key,value in pracDic.iteritems():
-            r = db.update({'_id':pracID},{'$set': {'metrics':{key:value}} })
+            r = db.update({'_id':pracID},{'$set': {'metrics.'+key:value} })
 
 def testPrac(dic):
     db = getCollection('practices',write=False)
