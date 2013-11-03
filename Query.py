@@ -32,6 +32,8 @@ def getCollection(collName,write=False):
         posts = db.prescriptons
     elif collName=='system.users':
         posts = db.system.users
+    elif collName=='metrics':
+        posts = db.metrics
     else:
         raise Exception('Unknown database collection ' + collName)
     return posts
@@ -43,6 +45,16 @@ def getAllAD():
 	regx = re.compile("^0403030", re.IGNORECASE)
 	res = p.find({'BNF CODE':regx})
 	return res
+
+
+def getpres(presname=""):
+    p = getCollection('prescriptons')
+    regx = re.compile(presname, re.IGNORECASE)
+    res = p.find({'BNF NAME':regx})
+    return res
+
+
+
 
 def sumAmounts():
 	## Function to aggregate 
@@ -61,10 +73,11 @@ def pushToPrac(dic):
         ## Function to take a list of dictonaries with id:practice and 
     # metricName and push to practice db
     db = getCollection('practices',write=True)
+    print 'Start Upload'
     for pracID,pracDic in dic.iteritems():
-        print pracID
         for key,value in pracDic.iteritems():
-            r = db.update({'_id':pracID},{'$set': {'metrics.'+key:value} })
+            r = db.update({'_id':pracID},{'$set': {'metrics.'+key:float(value)} })
+    print "Finish"
 
 def testPrac(dic):
     db = getCollection('practices',write=False)
@@ -72,6 +85,25 @@ def testPrac(dic):
         res = db.find({'_id':pracID})
         for r in res:
             print r
+
+
+
+def drugOfInterest(listDrug=""):
+    ## Takes a list of drugs and uploads to db
+    db = getCollection('metrics',write=True)
+    db.insert({'MetricList':listDrug})
+
+
+
+
+
+drugOfInterest(['Quanity of Citalopram Hydrob_Tab 40mg','Quanity of Citalopram Hydrob_Tab 10mg','Quanity of Fluoxetine HCl_Cap 20mg','Total Patients',
+    'Deprivation score','% aged 65+ years','IDAOPI','% satisfied with phone access','Working status - Unemployed','Disability allowance claimants (per 1000)',
+    'All outpatient attendances (per 1000)','Diabetes: QOF prevalence (17+)','Psychoses: QOF prevalence (all ages)','Dementia: QOF prevalence (all ages)',
+    'Depression: QOF prevalence (18+)'])
+db = getCollection('metrics')
+print db.find_one()
+
 
 
 
