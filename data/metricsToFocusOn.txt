@@ -10,4 +10,4 @@ Psychoses: QOF prevalence (all ages)
 Dementia: QOF prevalence (all ages)
 Depression: QOF prevalence (18+)
 Total Patients
-Quanity of Fluoxetine HCl_Cap 20mg
+

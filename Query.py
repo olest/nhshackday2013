@@ -76,7 +76,8 @@ def pushToPrac(dic):
     print 'Start Upload'
     for pracID,pracDic in dic.iteritems():
         for key,value in pracDic.iteritems():
-            r = db.update({'_id':pracID},{'$set': {'metrics.'+key:float(value)} })
+            print pracID
+            r = db.update({'_id':pracID},{'$set': {'metrics.'+key:value} })
     print "Finish"
 
 def testPrac(dic):
@@ -85,7 +86,6 @@ def testPrac(dic):
         res = db.find({'_id':pracID})
         for r in res:
             print r
-
 
 
 def drugOfInterest(listDrug=""):
@@ -97,12 +97,15 @@ def drugOfInterest(listDrug=""):
 
 
 
-drugOfInterest(['Quanity of Citalopram Hydrob_Tab 40mg','Quanity of Citalopram Hydrob_Tab 10mg','Quanity of Fluoxetine HCl_Cap 20mg','Total Patients',
-    'Deprivation score','% aged 65+ years','IDAOPI','% satisfied with phone access','Working status - Unemployed','Disability allowance claimants (per 1000)',
-    'All outpatient attendances (per 1000)','Diabetes: QOF prevalence (17+)','Psychoses: QOF prevalence (all ages)','Dementia: QOF prevalence (all ages)',
-    'Depression: QOF prevalence (18+)'])
-db = getCollection('metrics')
-print db.find_one()
+# drugOfInterest(['Quanity of Citalopram Hydrob_Tab 40mg','Quanity of Citalopram Hydrob_Tab 10mg','Quanity of Fluoxetine HCl_Cap 20mg','Total Patients',
+#     'Deprivation score','% aged 65+ years','IDAOPI','% satisfied with phone access','Working status - Unemployed','Disability allowance claimants (per 1000)',
+#     'All outpatient attendances (per 1000)','Diabetes: QOF prevalence (17+)','Psychoses: QOF prevalence (all ages)','Dementia: QOF prevalence (all ages)',
+#     'Depression: QOF prevalence (18+)'])
+# db = getCollection('metrics')
+# db = getCollection('practices')
+# res = db.find()
+# for r in res:
+#     print r
 
 
 
@@ -121,5 +124,6 @@ print db.find_one()
 # db = __connect__()
 # print db.collection_names()
 # pres = getCollection('practices')
-# print pres.find_one()
+# for r in pres.find({}):
+#     print r
 
