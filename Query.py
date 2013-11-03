@@ -29,7 +29,6 @@ def getCollection(collName):
 
 
 
-#print db.collection_names()
 def getAllAD():
 	p = getCollection('prescriptons')
 	regx = re.compile("^0403030", re.IGNORECASE)
@@ -39,16 +38,30 @@ def getAllAD():
 def sumAmounts():
 	## Function to aggregate 
 	p = getCollection('prescriptons')
-	regx = re.compile("^0403030", re.IGNORECASE)
-	print p.aggregate( [{ '$match': {'BNF CODE':regx}  } , {'$group': { '_id' : "$PRACTICE" ,'total': {'$sum': "$ACT COST"} }}])
+	# regx = re.compile("^0403030", re.IGNORECASE)
+	regx = re.compile("^0403030E0", re.IGNORECASE)
+	return p.aggregate( [{ '$match': {'BNF CODE':regx}  } , 
+		{'$group': { '_id' : "$PRACTICE" ,'totalCost': {'$sum': "$ACT COST"} }}])	
+
+def pushMetrics(id):
+	## Function to take a list of dictonaries with id:practice and 
+	# metricName and push to practice db
+	db = getCollection('practices')
+	print db.find({'_id':id})
 
 
 
-getAllAD()
-sumAmounts()
+# res =  getAllAD()
+# for r in res:
+# 	print r
 
-db= __connect__()
-print db.collection_names()
-pres = getCollection('prescriptons')
-print pres.find_one()
+
+print sumAmounts()['result'][:5]
+tmpListMetric = [{u'totalCost': 6.99, u'_id': u'C82651'}, {u'totalCost': 39.38, u'_id': u'C82642'}, {u'totalCost': 63.82, u'_id': u'C82639'}, {u'totalCost': 126.17, u'_id': u'C82624'}, {u'totalCost': 40.97, u'_id': u'C82610'}]
+pushMetrics(id = tmpListMetric[0] )
+
+# db = __connect__()
+# print db.collection_names()
+# pres = getCollection('prescriptons')
+# print pres.find_one()
 
