@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PracticeMinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    
+    <link href="./nv/nv.d3.css" rel="stylesheet">
+
+    <script src="./d3/d3.v3.js"></script>
+    <script src="./nv/nv.d3.js"></script>
+
+    <style type="text/css">
+      body {
+        padding-top: 120px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <a class="navbar-brand" href="#">PracticeMinder</a>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">X-Axis<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Y-Axis<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Size<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Color<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="container">
+      <div id='chart'>
+        <svg style="min-height:600px;"> </svg>
+      </div>
+    </div> <!-- /container -->
+
+    <script src="./js/jquery-2.0.3.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+      ScatterPlot.plot("#chart svg", ScatterPlot.randomData(1,100));
+      ScatterPlot.getData();
+    </script>
+
+  </body>
+</html>

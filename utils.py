@@ -3,9 +3,10 @@ import os
 import copy
 import logging
 from functools import *
+import config
 
 log = logging.getLogger(__name__)
-
+log.setLevel(logging.DEBUG)
 
 def timeMe(fun):
   def timed(*args, **kwargs):
@@ -46,7 +47,7 @@ def cacheMemo(interval):
       self.func = func
       self.cache = {}
     def __call__(self, *args):
-      if CACHE:
+      if config.CACHE:
         try:
           hit = self.cache[args]
           if hit["expiry"] < time.time():
