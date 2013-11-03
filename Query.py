@@ -9,8 +9,17 @@ def __connect__():
     db.authenticate('nhshd','nhshd')
     return db
 
-def getCollection(collName):
-    db = __connect__()
+def __connectWrite__():
+    connection = MongoClient('146.185.159.107', 27017)
+    db = connection.prescription
+    db.authenticate('nhshd-rw','nhs-m0ng0')
+    return db
+
+def getCollection(collName,write=False):
+    if write:
+        db = __connectWrite__()
+    else:
+        db = __connect__()
     if collName=='system.indexes':
         posts = db.system.indexes
     elif collName=='practices':
@@ -49,6 +58,21 @@ def pushMetrics(id):
 	db = getCollection('practices')
 	print db.find({'_id':id})
 
+def pushToPrac(dic):
+    db = getCollection('practices',write=True)
+    for pracID,pracDic in dic.iteritems():
+        for key,value in pracDic.iteritems():
+            r = db.update({'_id':pracID},{'$set': {'metrics':{key:value}} })
+
+def testPrac(dic):
+    db = getCollection('practices',write=False)
+    for pracID,pracDic in dic.iteritems():
+        res = db.find({'_id':pracID})
+        for r in res:
+            print r
+
+
+
 
 
 # res =  getAllAD()
@@ -56,12 +80,12 @@ def pushMetrics(id):
 # 	print r
 
 
-print sumAmounts()['result'][:5]
-tmpListMetric = [{u'totalCost': 6.99, u'_id': u'C82651'}, {u'totalCost': 39.38, u'_id': u'C82642'}, {u'totalCost': 63.82, u'_id': u'C82639'}, {u'totalCost': 126.17, u'_id': u'C82624'}, {u'totalCost': 40.97, u'_id': u'C82610'}]
-pushMetrics(id = tmpListMetric[0] )
+# print sumAmounts()['result'][:5]
+# tmpListMetric = [{u'totalCost': 6.99, u'_id': u'C82651'}, {u'totalCost': 39.38, u'_id': u'C82642'}, {u'totalCost': 63.82, u'_id': u'C82639'}, {u'totalCost': 126.17, u'_id': u'C82624'}, {u'totalCost': 40.97, u'_id': u'C82610'}]
+# pushMetrics(id = tmpListMetric[0] )
 
 # db = __connect__()
 # print db.collection_names()
-# pres = getCollection('prescriptons')
+# pres = getCollection('practices')
 # print pres.find_one()
 
