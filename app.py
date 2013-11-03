@@ -64,15 +64,8 @@ def getPractices():
 def getMetrics():
   """
   Returns all available metrics that can be queried using getMetric()
-
-  There's probably a clever way to do this on Mongo's side, but this works ok
   """
-  metrics = set([])
-  
-  for practice in db.practices.find({"metrics":{"$exists":1}}):
-    metrics = metrics.union( set(practice["metrics"].keys()) )
-
-  return json.dumps({"available_metrics": list(metrics)})
+  return json.dumps({"available_metrics": list(db.metrics.find())})
   
 
 @app.route('/practices/metric/<metric>')
