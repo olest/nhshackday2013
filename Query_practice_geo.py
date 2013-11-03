@@ -77,7 +77,7 @@ def testPrac(dic):
 
 def main():
     cl  = getCollection('practices',write=False)
-    print '{ "type": "FeatureCollection,"','\n'; 
+    print '{ "type": "FeatureCollection",','\n'; 
     print '"features": [','\n'
     for p in cl.find({ 'loc' : { '$exists' : True} }) :
         print '{ "type": "Feature",'
