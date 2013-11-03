@@ -1,0 +1,76 @@
+BNF CODE,BNF NAME,ITEMS,QUANTITY
+0403030Z0AAAAAA,citalopram hcl_oral dps 40mg/ml s/f,6194,111390
+0403030D0AAABAB,citalopram hydrob_tab 10mg,320372,10043155
+0403030D0AAAAAA,citalopram hydrob_tab 20mg,699169,22895938
+0403030D0AAACAC,citalopram hydrob_tab 40mg,157565,4793778
+,,,
+0411000D0AAAIAI,donepezil hcl_orodisper tab 10mg,76,1806
+0411000D0AAAEAE,donepezil hcl_orodisper tab 10mg s/f,1937,47879
+0411000D0AAAHAH,donepezil hcl_orodisper tab 5mg,47,1330
+0411000D0AAADAD,donepezil hcl_orodisper tab 5mg s/f,694,16528
+0411000D0AAABAB,donepezil hcl_tab 10mg,91430,1843944
+0411000D0AAAAAA,donepezil hcl_tab 5mg,30372,610218
+,,,
+0403030E0AAAAAA,fluoxetine hcl_cap 20mg,495561,21588262
+0403030E0AAAEAE,fluoxetine hcl_cap 60mg,3949,110863
+0403030E0AAACAC,fluoxetine hcl_oral soln 20mg/5ml,8055,1204840
+0403030E0AAAHAH,fluoxetine hcl_oral soln 20mg/5ml s/f,435,59920
+0403030E0AAAJAJ,fluoxetine hcl_tab 10mg,567,17735
+,,,
+0601023AFAAABAB,linagliptin/metformin_tab 2.5mg/1g,1697,106697
+0601023AFAAAAAA,linagliptin/metformin_tab 2.5mg/850mg,85,3983
+0601023ADAAAAAA,metformin hcl/sitagliptin_tab 1g/50mg,6943,455833
+0601022B0AAAQAQ,metformin hcl_cap 850mg,1,84
+0601022B0AAAIAI,metformin hcl_liq spec 500mg/5ml,19,8800
+0601022B0AAARAR,metformin hcl_oral soln 500mg/5ml s/f,899,326022
+0601022B0AAAXAX,metformin hcl_pdr sach 1g s/f,2459,133109
+0601022B0AAAWAW,metformin hcl_pdr sach 500mg s/f,5619,383279
+0601022B0AAAVAV,metformin hcl_tab 1g m/r,98549,5768158
+0601022B0AAABAB,metformin hcl_tab 500mg,1012338,102959879
+0601022B0AAASAS,metformin hcl_tab 500mg m/r,219436,19947313
+0601022B0AAATAT,metformin hcl_tab 750mg m/r,15562,981106
+0601022B0AAADAD,metformin hcl_tab 850mg,160867,13231129
+0601023W0AAAAAA,pioglitazone/metformin hcl_tab15mg/850mg,10559,695134
+0601023AHAAABAB,saxagliptin/metformin_tab 2.5mg/1g,201,12362
+0601023AHAAAAAA,saxagliptin/metformin_tab 2.5mg/850mg,41,1428
+0601023Z0AAAAAA,vildagliptin/metformin hcl_tab 50mg/1g,5237,346152
+0601023Z0AAABAB,vildagliptin/metformin hcl_tab50mg/850mg,1388,92456
+,,,
+0402010ABAAAMAM,quetiapine_liq spec 100mg/5ml,23,4930
+0402010ABAAAIAI,quetiapine_liq spec 12.5mg/5ml,35,5660
+0402010ABAAARAR,quetiapine_liq spec 200mg/5ml,1,70
+0402010ABAAALAL,quetiapine_liq spec 50mg/5ml,25,6520
+0402010ABAAAHAH,quetiapine_oral soln 25mg/5ml,23,5000
+0402010ABAABCBC,quetiapine_oral susp 100mg/5ml,67,14325
+0402010ABAABBBB,quetiapine_oral susp 12.5mg/5ml,38,10960
+0402010ABAABDBD,quetiapine_oral susp 25mg/5ml,55,18010
+0402010ABAAACAC,quetiapine_tab 100mg,28594,935764
+0402010ABAAAFAF,quetiapine_tab 150mg,11586,361717
+0402010ABAABABA,quetiapine_tab 150mg m/r,3987,103828
+0402010ABAAADAD,quetiapine_tab 200mg,21038,729821
+0402010ABAAAWAW,quetiapine_tab 200mg m/r,8456,217060
+0402010ABAAABAB,quetiapine_tab 25mg,61916,2989695
+0402010ABAAAKAK,quetiapine_tab 300mg,15788,434645
+0402010ABAAAXAX,quetiapine_tab 300mg m/r,16403,439959
+0402010ABAAAYAY,quetiapine_tab 400mg m/r,9091,231877
+0402010ABAAAVAV,quetiapine_tab 50mg m/r,13504,484360
+,,,
+0402020AAAAAAAA,risperidone_inj pdr 25mg vl + dil,250,421
+0402020AAAAACAC,risperidone_inj pdr 37.5mg vl + dil,329,518
+0402020AAAAABAB,risperidone_inj pdr 50mg vl + dil,369,595
+040201030AAAEAE,risperidone_oral liq 1mg/1ml s/f,3374,387400
+040201030AAALAL,risperidone_orodisper tab 1mg s/f,837,31334
+040201030AAAMAM,risperidone_orodisper tab 2mg s/f,638,22802
+040201030AAAPAP,risperidone_orodisper tab 3mg s/f,261,8199
+040201030AAAQAQ,risperidone_orodisper tab 4mg s/f,282,8225
+040201030AAANAN,risperidone_orodisper tab 500mcg s/f,1574,62701
+040201030AAAAAA,risperidone_tab 1mg,35488,1317667
+040201030AAABAB,risperidone_tab 2mg,24980,864756
+040201030AAACAC,risperidone_tab 3mg,10655,337571
+040201030AAADAD,risperidone_tab 4mg,10606,290942
+040201030AAAKAK,risperidone_tab 500mcg,35895,1250929
+040201030AAAFAF,risperidone_tab 6mg,1560,36039
+,,,
+0601023X0AAAAAA,sitagliptin_tab 100mg,147980,4813097
+0601023X0AAACAC,sitagliptin_tab 25mg,3484,94052
+0601023X0AAABAB,sitagliptin_tab 50mg,9018,271673
