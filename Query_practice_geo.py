@@ -91,6 +91,7 @@ def main():
         print '"Name" : "',name,'",',
         print '"Post code" : "',post,'",',
         print '"Town" : "',town,'"',
+        #print '"Quantity of Metformin HCl_Tab 500mg prescribed" : "',p['metrics']['Quanity of Metformin HCl_Tab 500mg'],'"',
         print'},\n'
         print '"geometry": { "type": "Point", "coordinates": [',p['loc']['coordinates'][0],',',p['loc']['coordinates'][1],'] }\n'; 
         print '},',"\n"
