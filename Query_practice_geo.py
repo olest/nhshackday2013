@@ -81,7 +81,12 @@ def main():
     print '"features": [','\n'
     for p in cl.find({ 'loc' : { '$exists' : True} }) :
         print '{ "type": "Feature",'
-        print '"geometry": "type": "Point", "coordinates": [',p['loc']['coordinates'][0],',',p['loc']['coordinates'][1],']\n'; 
+        print '"properties" : { '
+        print '"Name" : "',p['name'],'"',
+        print '"Post code" : "',p['post'],'"',
+        print '"Town" : "',p['town'],'"',
+        print'}\n'
+        print '"geometry": { "type": "Point", "coordinates": [',p['loc']['coordinates'][0],',',p['loc']['coordinates'][1],'] }\n'; 
         print '}',"\n"
     print "]\n"
     print "}"
