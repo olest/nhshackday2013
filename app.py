@@ -59,8 +59,18 @@ def getPractices():
   """
   return json.dumps(list(db.practices.find({}, {"metrics":0})))
 
-@app.route('/practices/metrics')
+
+@app.route('/practices/derivedmetrics')
 @utils.cacheMemo(3600) # We cache the results for an hour.
+@JSON
+def getDerivedMetrics():
+  metrics = set([])
+  for practice in db.practices.find({"metrics":{"$exists":1}}):
+      metrics = metrics.union( set(practice["metrics"].keys()) )
+  
+  return json.dumps({"available_metrics": list(metrics)})
+
+@app.route('/practices/metrics')
 @JSON
 def getMetrics():
   """
