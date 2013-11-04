@@ -27,7 +27,25 @@ window.ScatterPlot = function($, d3, nv){
     return data;
   };
 
-
+  sp.buildMenu  = function(selector){
+    $.when(
+      $.get("template/metric-dropdown.html"),
+      $.getJSON("practices/metrics")
+    ).then(function(dropdown,metrics){
+      var template = Hogan.compile(dropdown[0]);
+      var metrics = metrics[0].available_metrics.map(function(metric){
+        return {name: metric, metric: metric}
+      }); 
+      ["X-Axis", "Y-Axis", "Color", "Size"].forEach(function(control){
+          var data = {
+            control: control, 
+            control_name:control, 
+            metrics: metrics
+          };
+          $("#choices").append(template.render(data));
+      });
+    });
+  };
   
   sp.getData = function(){
     $.when( 
@@ -62,6 +80,35 @@ window.ScatterPlot = function($, d3, nv){
       }
     ); 
   };
+  
+  sp.compare = function(x_metric, y_metric, size_metric, color_metric){
+    $.when( 
+      $.getJSON("practices/compare/"+x_metric+"/"+y_metric+"/200") 
+    ).then(
+      function(metrics){
+        var datum = { 
+          key: "General Practices",
+          values: []
+        };
+        console.log(metrics); 
+        metrics.forEach(function(practice){
+          datum.values.push({
+            size: 1,
+            x: practice.metrics[x_metric],
+            y: practice.metrics[y_metric],
+          });
+        });
+        
+        console.log(datum);
+
+        sp.plot("#chart svg", [datum]);
+        
+      },
+      function(){
+        alert("Error ocurred when loading data.");
+      }
+    );
+  };
 
   sp.plot = function(target, data){
     nv.addGraph(function() {
@@ -83,6 +130,25 @@ window.ScatterPlot = function($, d3, nv){
       return chart;
     });
   };
+
+  sp.controller = function(elem){
+     var controlFor = $(elem).attr("control-for");
+     var metric = $(elem).attr("metric");
+     sp[controlFor] =  metric;
+     $("#xlabel").html(sp["X-Axis"]);
+     $("#ylabel").html(sp["Y-Axis"]);
+     sp.compare(
+        sp["X-Axis"],
+        sp["Y-Axis"],
+        sp["Size"],
+        sp["Color"]
+     );
+  };
+  
+  sp["X-Axis"] = "";
+  sp["Y-Axis"] = "";
+  sp["Color"] = "";
+  sp["Size"] = "";
 
   return sp;
 

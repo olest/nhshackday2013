@@ -1,0 +1,29 @@
+
+
+<!-- 
+  {
+    control_name: "X-axis",
+    control: "x-axis",
+    metrics: [
+      {name: "Human Name", metric: "machine-name"},
+      ...
+    ]
+  } 
+-->
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    {{control_name}}<b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    {{#metrics}}  
+      <li>
+        <a 
+          href="#" 
+          control-for="{{control}}" 
+          metric="{{metric}}"
+          onclick="ScatterPlot.controller(this)">{{name}}</a>
+      </li>
+    {{/metrics}}
+  </ul>
+</li>

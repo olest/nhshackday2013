@@ -69,7 +69,7 @@ def getMetrics():
   """
   metrics = set([])
   
-  for practice in db.practices.find():
+  for practice in db.practices.find({"metrics":{"$exists":1}}):
     metrics = metrics.union( set(practice["metrics"].keys()) )
 
   return json.dumps({"available_metrics": list(metrics)})
@@ -91,6 +91,21 @@ def getMetric(metric, limit=500):
     }
   ).limit(int(limit))))
 
+
+@app.route('/practices/compare/<metrica>/<metricb>')
+@app.route('/practices/compare/<metrica>/<metricb>/<limit>')
+@JSON
+def getCompare(metrica, metricb, limit=200):
+  return json.dumps(list(db.practices.find(
+    {
+      "metrics.{}".format(metrica): {"$exists":1},
+      "metrics.{}".format(metricb): {"$exists":1},
+    }, 
+    {
+      "metrics.{}".format(metrica): 1,
+      "metrics.{}".format(metricb): 1,
+    }
+  ).limit(int(limit))))
 
 #
 # Routes
