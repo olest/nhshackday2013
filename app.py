@@ -3,6 +3,7 @@ import os
 import logging
 import time
 import json
+import base64
 
 FORMAT='[%(levelname)s] (%(pathname)s %(asctime)s): %(message)s'
 logging.basicConfig(format=FORMAT)
@@ -89,6 +90,8 @@ def getMetric(metric, limit=500):
 @app.route('/practices/compare/<metrica>/<metricb>/<limit>')
 @JSON
 def getCompare(metrica, metricb, limit=200):
+  metrica = base64.b64decode(metrica).decode('utf-8')
+  metricb = base64.b64decode(metricb).decode('utf-8')
   log.info("recieved request for: ({}) vs ({})".format(metrica,metricb))
   return json.dumps(list(db.practices.find(
     {

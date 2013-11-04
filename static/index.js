@@ -80,7 +80,9 @@ window.ScatterPlot = function($, d3, nv){
       }
     ); 
   };
-  
+  sp.encodeMetricName = function(name){
+    return btoa(name); 
+  };
   sp.compare = function(x_metric, y_metric, size_metric, color_metric){
     if( !x_metric || !y_metric){ 
       console.log("We don't mess with the graph until we have two metrics");
@@ -88,7 +90,7 @@ window.ScatterPlot = function($, d3, nv){
     };
 
     $.when( 
-      $.getJSON("practices/compare/"+encodeURIComponent(x_metric)+"/"+encodeURIComponent(y_metric)+"/2000") 
+      $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+"/"+sp.encodeMetricName(y_metric)+"/2000") 
     ).then(
       function(metrics){
         var datum = { 
