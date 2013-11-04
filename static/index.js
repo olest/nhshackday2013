@@ -94,8 +94,8 @@ window.ScatterPlot = function($, d3, nv){
         metrics.forEach(function(practice){
           datum.values.push({
             size: 1,
-            x: practice.metrics[x_metric],
-            y: practice.metrics[y_metric],
+            x: parseFloat(practice.metrics[x_metric]),
+            y: parseFloat(practice.metrics[y_metric]),
           });
         });
         
