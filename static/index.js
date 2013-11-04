@@ -82,15 +82,19 @@ window.ScatterPlot = function($, d3, nv){
   };
   
   sp.compare = function(x_metric, y_metric, size_metric, color_metric){
+    if( !x_metric || !y_metric){ 
+      console.log("We don't mess with the graph until we have two metrics");
+      return null;
+    };
+
     $.when( 
-      $.getJSON("practices/compare/"+x_metric+"/"+y_metric+"/200") 
+      $.getJSON("practices/compare/"+encodeURIComponent(x_metric)+"/"+encodeURIComponent(y_metric)+"/2000") 
     ).then(
       function(metrics){
         var datum = { 
           key: "General Practices",
           values: []
         };
-        console.log(metrics); 
         metrics.forEach(function(practice){
           datum.values.push({
             size: 1,
@@ -99,8 +103,7 @@ window.ScatterPlot = function($, d3, nv){
           });
         });
         
-        console.log(datum);
-
+        $("#datapoints").html( datum.values.length);
         sp.plot("#chart svg", [datum]);
         
       },

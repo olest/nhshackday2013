@@ -96,6 +96,7 @@ def getMetric(metric, limit=500):
 @app.route('/practices/compare/<metrica>/<metricb>/<limit>')
 @JSON
 def getCompare(metrica, metricb, limit=200):
+  log.info("recieved request for: ({}) vs ({})".format(metrica,metricb))
   return json.dumps(list(db.practices.find(
     {
       "metrics.{}".format(metrica): {"$exists":1},
