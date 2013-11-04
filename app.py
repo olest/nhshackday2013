@@ -66,8 +66,8 @@ def getMetrics():
   """
   Returns all available metrics that can be queried using getMetric()
   """
-  return json.dumps({"available_metrics": list(db.metrics.find())})
-  
+  names = [metric["name"] for metric in list(db.metrics.find())]
+  return json.dumps({"available_metrics": names})
 
 @app.route('/practices/metric/<metric>')
 @app.route('/practices/metric/<metric>/<limit>')
