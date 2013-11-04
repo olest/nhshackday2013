@@ -36,7 +36,7 @@ window.ScatterPlot = function($, d3, nv){
       var metrics = metrics[0].available_metrics.map(function(metric){
         return {name: metric, metric: metric}
       }); 
-      ["X-Axis", "Y-Axis", "Color", "Size"].forEach(function(control){
+      ["X-Axis", "Y-Axis"].forEach(function(control){
           var data = {
             control: control, 
             control_name:control, 
