@@ -36,7 +36,7 @@ window.ScatterPlot = function($, d3, nv){
       var metrics = metrics[0].available_metrics.map(function(metric){
         return {name: metric, metric: metric}
       }); 
-      ["X-Axis", "Y-Axis"].forEach(function(control){
+      ["X-Axis", "Y-Axis", "Size"].forEach(function(control){
           var data = {
             control: control, 
             control_name:control, 
@@ -84,13 +84,15 @@ window.ScatterPlot = function($, d3, nv){
     return btoa(name); 
   };
   sp.compare = function(x_metric, y_metric, size_metric, color_metric){
-    if( !x_metric || !y_metric){ 
+    if( !x_metric || !y_metric ){ 
       console.log("We don't mess with the graph until we have two metrics");
       return null;
-    };
-
-    $.when( 
-      $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+"/"+sp.encodeMetricName(y_metric)+"/2000") 
+    }
+    else if( x_metric && y_metric &&  !size_metric){ 
+      $.when( 
+      $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+
+                  "/"+sp.encodeMetricName(y_metric)+
+                  "/2000") 
     ).then(
       function(metrics){
         var datum = { 
@@ -108,10 +110,37 @@ window.ScatterPlot = function($, d3, nv){
         $("#datapoints").html( datum.values.length);
         sp.plot("#chart svg", [datum]);
         
-      },
-      function(){
-        alert("Error ocurred when loading data.");
       }
+    );
+    };
+
+    $.when( 
+      $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+
+                  "/"+sp.encodeMetricName(y_metric)+
+                  "/"+sp.encodeMetricName(size_metric)+
+                  "/2000") 
+    ).then(
+      function(metrics){
+        var datum = { 
+          key: "General Practices",
+          values: []
+        };
+        metrics.forEach(function(practice){
+          datum.values.push({
+            size: parseFloat(practice.metrics[x_metric]),
+            x: parseFloat(practice.metrics[x_metric]),
+            y: parseFloat(practice.metrics[y_metric]),
+          });
+        });
+        
+        $("#datapoints").html( datum.values.length);
+        sp.plot("#chart svg", [datum]);
+        
+      }
+    //   ,
+    //   function(){
+    //     alert("Error ocurred when loading data.");
+    //   }
     );
   };
 

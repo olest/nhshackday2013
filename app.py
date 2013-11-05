@@ -114,6 +114,28 @@ def getCompare(metrica, metricb, limit=200):
     }
   ).limit(int(limit))))
 
+@app.route('/practices/compare/<metrica>/<metricb>/<metricc>')
+@app.route('/practices/compare/<metrica>/<metricb>/<metricc>/<limit>')
+@JSON
+def getCompare(metrica, metricb,metricc, limit=200):
+  metrica = base64.b64decode(metrica).decode('utf-8')
+  metricb = base64.b64decode(metricb).decode('utf-8')
+  metricc = base64.b64decode(metricc).decode('utf-8')
+
+  log.info("recieved request for: ({}) vs ({}) size ({})".format(metrica,metricb,metricc))
+  return json.dumps(list(db.practices.find(
+    {
+      "metrics.{}".format(metrica): {"$exists":1},
+      "metrics.{}".format(metricb): {"$exists":1},
+      "metrics.{}".format(metricc): {"$exists":1},
+    }, 
+    {
+      "metrics.{}".format(metrica): 1,
+      "metrics.{}".format(metricb): 1,
+      "metrics.{}".format(metricc): 1,
+    }
+  ).limit(int(limit))))
+
 #
 # Routes
 #
