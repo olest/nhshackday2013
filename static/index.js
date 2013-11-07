@@ -149,7 +149,9 @@ window.ScatterPlot = function($, d3, nv){
         });
         
         $("#datapoints").html( datum.values.length);
+        $("#size").html( size_metric);
         sp.plot("#chart svg", [datum]);
+
         
       }
     //   ,
