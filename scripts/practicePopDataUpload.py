@@ -31,7 +31,8 @@ for res in db.find():
 
 
 # drugList = ['fluoxetine','citalopram','quetiapine','donepezil','metformin','sitagliptin','ferr']
-drugList = ['fluoxetine']
+drugList = ['citalopram','quetiapine','donepezil','metformin','sitagliptin','ferr']
+
 
 dbwrite = getCollection('practices',write=True)
 for drug in drugList:

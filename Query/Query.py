@@ -1,18 +1,19 @@
 from pymongo import MongoClient
 from pymongo import ASCENDING, DESCENDING
 import re
+import config
 
 #connection = Connection('146.185.159.107',27017)
 def __connect__():
-    connection = MongoClient('146.185.159.107', 27017)
+    connection = MongoClient(config.DB_SERVER,config.DB_PORT)
     db = connection.prescription
-    db.authenticate('nhshd','nhshd')
+    db.authenticate(config.DB_USER,config.DB_PWD)
     return db
 
 def __connectWrite__():
-    connection = MongoClient('146.185.159.107', 27017)
+    connection = MongoClient(config.DB_SERVER, config.DB_PORT)
     db = connection.prescription
-    db.authenticate('nhshd-rw','nhs-m0ng0')
+    db.authenticate(config.DB_USER_RW,config.DB_PWD_RW)
     return db
 
 def getCollection(collName,write=False):
@@ -29,6 +30,8 @@ def getCollection(collName,write=False):
     elif collName=='practice_geo':
         posts = db.practice_geo
     elif collName=='prescriptons':
+        posts = db.prescriptons
+    elif collName=='prescriptions':
         posts = db.prescriptons
     elif collName=='system.users':
         posts = db.system.users
@@ -92,6 +95,45 @@ def drugOfInterest(listDrug=""):
     ## Takes a list of drugs and uploads to db
     db = getCollection('metrics',write=True)
     db.insert({'MetricList':listDrug})
+
+def getDerivedMetrics():
+    db = getCollection('practices')
+    metrics = set([])
+    for practice in db.find({"metrics":{"$exists":1}}):
+        metrics = metrics.union( set(practice["metrics"].keys()) )
+
+    return metrics
+
+
+
+def displayRules(name):
+    Quanity = re.search('Quanity',name)
+    perp = re.search('patient',name)
+    totP = 'totPatient'==name
+    if (Quanity and not perp) or totP or countMetrics(name) < 100 :
+        return 0
+    else:
+        return 1
+
+
+def editDisplay():
+    db = getCollection('metrics',write=True)
+    allMetrics = getDerivedMetrics()
+    for metric in allMetrics:
+        c = db.find({'name':metric}).count()
+        d = displayRules(metric)
+        if not c:
+            db.insert({'name':metric,'display':d})
+        else:
+            db.update({'name':metric},{'$set':{'display':d}})
+        print db.find_one({'name':metric},{'name':1,'display':1})
+
+def countMetrics(name):
+    db = getCollection('practices')
+    return db.find({'metrics.'+name:{'$exists':1}}).count()
+
+
+
 
 
 
