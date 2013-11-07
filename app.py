@@ -4,6 +4,7 @@ import logging
 import time
 import json
 import base64
+from stats import personCor
 
 FORMAT='[%(levelname)s] (%(pathname)s %(asctime)s): %(message)s'
 logging.basicConfig(format=FORMAT)
@@ -95,6 +96,28 @@ def getMetric(metric, limit=500):
     }
   ).limit(int(limit))))
 
+@app.route('/practices/comparestats/<metrica>/<metricb>/')
+@app.route('/practices/comparestats/<metrica>/<metricb>/<limit>')
+@JSON
+def getComparestats(metrica, metricb, limit=200):
+  metrica = base64.b64decode(metrica).decode('utf-8')
+  metricb = base64.b64decode(metricb).decode('utf-8')
+  log.info("recieved request for: ({}) vs ({}) stats".format(metrica,metricb))
+  metrics = json.dumps(list(db.practices.find(
+    {
+      "metrics.{}".format(metrica): {"$exists":1},
+      "metrics.{}".format(metricb): {"$exists":1},
+    }, 
+    {
+      "metrics.{}".format(metrica): 1,
+      "metrics.{}".format(metricb): 1,
+      "post": 1
+    }
+  ).limit(int(limit))))
+  R,p =  personCor(metrics)
+  stats = {'R':R,'p':p}
+  return stats
+
 
 @app.route('/practices/compare/<metrica>/<metricb>')
 @app.route('/practices/compare/<metrica>/<metricb>/<limit>')
@@ -103,7 +126,7 @@ def getCompare(metrica, metricb, limit=200):
   metrica = base64.b64decode(metrica).decode('utf-8')
   metricb = base64.b64decode(metricb).decode('utf-8')
   log.info("recieved request for: ({}) vs ({})".format(metrica,metricb))
-  return json.dumps(list(db.practices.find(
+  metrics = json.dumps(list(db.practices.find(
     {
       "metrics.{}".format(metrica): {"$exists":1},
       "metrics.{}".format(metricb): {"$exists":1},
@@ -111,8 +134,10 @@ def getCompare(metrica, metricb, limit=200):
     {
       "metrics.{}".format(metrica): 1,
       "metrics.{}".format(metricb): 1,
+      "post": 1
     }
   ).limit(int(limit))))
+  return metrics
 
 @app.route('/practices/compare/<metrica>/<metricb>/<metricc>')
 @app.route('/practices/compare/<metrica>/<metricb>/<metricc>/<limit>')
@@ -133,6 +158,7 @@ def getCompare(metrica, metricb,metricc, limit=200):
       "metrics.{}".format(metrica): 1,
       "metrics.{}".format(metricb): 1,
       "metrics.{}".format(metricc): 1,
+      "post": 1,
     }
   ).limit(int(limit))))
 

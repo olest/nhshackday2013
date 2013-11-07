@@ -100,6 +100,7 @@ window.ScatterPlot = function($, d3, nv){
           values: []
         };
         metrics.forEach(function(practice){
+
           datum.values.push({
             size: 1,
             x: parseFloat(practice.metrics[x_metric]),
@@ -108,11 +109,25 @@ window.ScatterPlot = function($, d3, nv){
         });
         
         $("#datapoints").html( datum.values.length);
+        $("#Rcoef").html( '000 ');
+        $("#pvalue").html( '000');
         sp.plot("#chart svg", [datum]);
-        
       }
     );
+    $.when(
+      $.getJSON("practices/comparestats/"+sp.encodeMetricName(x_metric)+
+                  "/"+sp.encodeMetricName(y_metric)+
+                  "/2000")
+      ).then(
+      function(stats){
+        var Rcoef = stats['R']
+        var pvalue = stats['p']
+        $("#Rcoef").html(Rcoef);
+        $("#pvalue").html(pvalue);
+      }
+      )
     };
+    
 
     $.when( 
       $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+
