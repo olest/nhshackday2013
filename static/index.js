@@ -122,6 +122,9 @@ window.ScatterPlot = function($, d3, nv){
         var pvalue = stats['p']
         $("#Rcoef").html(Rcoef);
         $("#pvalue").html(pvalue);
+        $("#JSONUrl").html('<a href="practices/compare/'+sp.encodeMetricName(x_metric)+
+                  "/"+sp.encodeMetricName(y_metric)+
+                  '/2000">' +'Export </a>')
       }
       )
     };

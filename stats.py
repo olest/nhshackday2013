@@ -141,20 +141,26 @@ def betai(a, b, x):
 def pearsonCor(metrics):
 	## Function to take a list of metrics and 
 	## return the pearson correlation between them
-	metrics = json.loads(metrics)
-	met1 = []
-	met2 = []
-	mets = list(metrics[0]['metrics'].keys())[:2]
-	for met in metrics:
-		try:
-			v1 = float(met['metrics'][mets[0]])
-			v2 = float(met['metrics'][mets[1]])
-			if v1 and v2:
-				met1.append(v1)
-				met2.append(v2)
-		except:
-			pass
-	return pearsonr(met1,met2)
+    met1,met2 = metricAsVec(metrics)
+    return pearsonr(met1,met2)
+
+def metricAsVec(metrics):
+    ## function to return metrics as two lists
+    metrics = json.loads(metrics)
+    met1 = []
+    met2 = []
+    mets = list(metrics[0]['metrics'].keys())[:2]
+    for met in metrics:
+        try:
+            v1 = float(met['metrics'][mets[0]])
+            v2 = float(met['metrics'][mets[1]])
+            if v1 and v2:
+                met1.append(v1)
+                met2.append(v2)
+        except:
+            pass
+    return met1,met2
+
 
 
 
