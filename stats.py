@@ -10,7 +10,7 @@ def _chk_asarray(a, axis):
         a = np.asarray(a)
         outaxis = axis
     return a, outaxis
-     
+
 
 def ss(a, axis=0):
     """
@@ -144,7 +144,7 @@ def pearsonCor(metrics):
 	metrics = json.loads(metrics)
 	met1 = []
 	met2 = []
-	mets = metrics[0]['metrics'].keys()[:2]
+	mets = list(metrics[0]['metrics'].keys())[:2]
 	for met in metrics:
 		try:
 			v1 = float(met['metrics'][mets[0]])
