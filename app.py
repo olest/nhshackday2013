@@ -4,8 +4,9 @@ import logging
 import time
 import json
 import base64
-from stats import personCor
-
+#from stats import personCor
+def personCor(metrics):
+  return(000,000)
 FORMAT='[%(levelname)s] (%(pathname)s %(asctime)s): %(message)s'
 logging.basicConfig(format=FORMAT)
 log = logging.getLogger(__name__)
