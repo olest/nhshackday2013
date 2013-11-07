@@ -109,8 +109,6 @@ window.ScatterPlot = function($, d3, nv){
         });
         
         $("#datapoints").html( datum.values.length);
-        $("#Rcoef").html( '000 ');
-        $("#pvalue").html( '000');
         sp.plot("#chart svg", [datum]);
       }
     );
