@@ -106,7 +106,7 @@ def pearsonr(x, y):
         t_squared = r*r * (df / ((1.0 - r) * (1.0 + r)))
         # prob = betai(0.5*df, 0.5, df / (df + t_squared))
         prob = 0
-    return r, prob
+    return round(r,3), prob
 
 def betai(a, b, x):
     """

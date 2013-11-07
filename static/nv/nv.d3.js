@@ -2160,7 +2160,7 @@ nv.models.bulletChart = function() {
         return '<h3>' + x + '</h3>' +
                '<p>' + y + '</p>'
       }
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide')
     ;
 
@@ -2512,7 +2512,7 @@ nv.models.cumulativeLineChart = function() {
     , id = lines.id()
     , state = { index: 0, rescaleY: rescaleY }
     , defaultState = null
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , average = function(d) { return d.average }
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , transitionDuration = 250
@@ -4119,7 +4119,7 @@ nv.models.historicalBarChart = function() {
     , y
     , state = {}
     , defaultState = null
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , transitionDuration = 250
     ;
@@ -4520,7 +4520,7 @@ nv.models.indentedTree = function() {
     , id = Math.floor(Math.random() * 10000)
     , header = true
     , filterZero = false
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , childIndent = 20
     , columns = [{key:'key', label: 'Name', type:'text'}] //TODO: consider functions like chart.addColumn, chart.removeColumn, instead of a block like this
     , tableClass = null
@@ -5429,7 +5429,7 @@ nv.models.lineChart = function() {
     , y
     , state = {}
     , defaultState = null
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , transitionDuration = 250
     ;
@@ -5894,7 +5894,7 @@ nv.models.linePlusBarChart = function() {
     , y2
     , state = {}
     , defaultState = null
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     ;
 
@@ -6328,7 +6328,7 @@ nv.models.lineWithFocusChart = function() {
         return '<h3>' + key + '</h3>' +
                '<p>' +  y + ' at ' + x + '</p>'
       }
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'brush')
     , transitionDuration = 250
     ;
@@ -6912,7 +6912,7 @@ nv.models.linePlusBarWithFocusChart = function() {
     , y2
     , y3
     , y4
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'brush')
     , transitionDuration = 0
     ;
@@ -8023,7 +8023,7 @@ nv.models.multiBarChart = function() {
     , y //can be accessed via chart.yScale()
     , state = { stacked: false }
     , defaultState = null
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , controlWidth = function() { return showControls ? 180 : 0 }
     , transitionDuration = 250
@@ -8966,7 +8966,7 @@ nv.models.multiBarHorizontalChart = function() {
     , y //can be accessed via chart.yScale()
     , state = { stacked: stacked }
     , defaultState = null
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , controlWidth = function() { return showControls ? 180 : 0 }
     , transitionDuration = 250
@@ -10622,7 +10622,7 @@ nv.models.pieChart = function() {
       }
     , state = {}
     , defaultState = null
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     ;
 
@@ -11605,7 +11605,7 @@ nv.models.scatterChart = function() {
     , state = {}
     , defaultState = null
     , dispatch     = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
-    , noData       = "No Data Available."
+    , noData       = "Choose X and Y Variables"
     , transitionDuration = 250
     ;
 
@@ -12233,7 +12233,7 @@ nv.models.scatterPlusLineChart = function() {
     , state = {}
     , defaultState = null
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
-    , noData       = "No Data Available."
+    , noData       = "Choose X and Y Variables"
     , transitionDuration = 250
     ;
 
@@ -13029,7 +13029,7 @@ nv.models.sparklinePlus = function() {
     , showValue = true
     , alignValue = true
     , rightAlignValue = false
-    , noData = "No Data Available."
+    , noData = "Choose X and Y Variables"
     ;
 
   //============================================================
@@ -13706,7 +13706,7 @@ nv.models.stackedAreaChart = function() {
     , yAxisTickFormat = d3.format(',.2f')
     , state = { style: stacked.style() }
     , defaultState = null
-    , noData = 'No Data Available.'
+    , noData = 'Choose X and Y Variables'
     , dispatch = d3.dispatch('tooltipShow', 'tooltipHide', 'stateChange', 'changeState')
     , controlWidth = 250
     , cData = ['Stacked','Stream','Expanded']
