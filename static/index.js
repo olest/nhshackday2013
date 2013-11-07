@@ -30,7 +30,7 @@ window.ScatterPlot = function($, d3, nv){
   sp.buildMenu  = function(selector){
     $.when(
       $.get("template/metric-dropdown.html"),
-      $.getJSON("practices/metrics")
+      $.getJSON("practices/allmetrics")
     ).then(function(dropdown,metrics){
       var template = Hogan.compile(dropdown[0]);
       var metrics = metrics[0].available_metrics.map(function(metric){
@@ -127,7 +127,7 @@ window.ScatterPlot = function($, d3, nv){
       }
       )
     };
-    
+
 
     $.when( 
       $.getJSON("practices/compare/"+sp.encodeMetricName(x_metric)+

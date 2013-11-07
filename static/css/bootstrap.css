@@ -3508,6 +3508,12 @@ input[type="button"].btn-block {
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+.dropdown-menu {
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 
 .open > .dropdown-menu {
   display: block;
